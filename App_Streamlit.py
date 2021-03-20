@@ -1,8 +1,4 @@
-"""
-Created on Thu Oct 05 17:42:01 2020
 
-@author: Abhishek Darekar
-"""
 
 
 
@@ -54,10 +50,10 @@ def main():
     st.subheader("Select a topic which you'd like to get the sentiment analysis on :")
 
     ################# Twitter API Connection #######################
-    consumer_key = "Enter Key Here"
-    consumer_secret = "Enter Key Here"
-    access_token = "Enter Key Here"
-    access_token_secret = "Enter Key Here"
+    consumer_key = "BCbxDlcoddIOplVCInJU9ioKW"
+    consumer_secret = "r7dFvGFdS5O96NGIk77WtOrlxfaZtZXlCpIJn3fhEV7hsK0xGJ"
+    access_token = "1332236076207939584-5hvkOqzrddGfJJtjhUvCrLrNPLMrdk"
+    access_token_secret = "bd72NdU184ybm673jYLzHHEcPqTboXP5PEFP4FEfAKFTG"
 
 
 
@@ -122,8 +118,23 @@ def main():
     from PIL import Image
     image = Image.open('Logo1.jpg')
     st.image(image, caption='Twitter for Analytics',use_column_width=True)
-    
-    
+
+    # importing library
+    from tkinter import *
+    # creating window
+    window = Tk()
+    # Title
+    window.title('Grand Canyon')
+    # display attributes
+    canvas = Canvas(window, width=500, height=500)
+    canvas.pack()
+    # GIF in my_image variable
+    # Give the entire file address along with the file name and gif extension
+    # Use \\ in the address
+    # The image given by me is C:\\UserAdmin\\Device\\Desktop2\\canyon.gif
+    my_image = PhotoImage(file='https://media.giphy.com/media/6h8jgwC3dU6vS/giphy.gif')
+    canvas.create_image(0, 0, anchor=NW, image - my_image)
+
     # Collect Input from user :
     Topic = str()
     Topic = str(st.text_input("Enter the topic you are interested in (Press Enter once done)"))     
@@ -225,12 +236,15 @@ def main():
         
         
     st.sidebar.header("About App")
-    st.sidebar.info("A Twitter Sentiment analysis Project which will scrap twitter for the topic selected by the user. The extracted tweets will then be used to determine the Sentiments of those tweets. \
-                    The different Visualizations will help us get a feel of the overall mood of the people on Twitter regarding the topic we select.")
-    st.sidebar.text("Built with Streamlit")
+    st.sidebar.info("A Twitter Sentiment analysis Project which will extract tweets for the Twitter Handle or the topic selected by the user. The extracted tweets will then be processed and Sentiment Analysis will be performed on them to determine the Sentiments of those tweets. \
+                    AS output,the various Visualizations will be displayed to help us understand the overall mood of the people on Twitter regarding the input provided by the user.")
+    st.sidebar.text("Project Made By:")
     
     st.sidebar.header("For Any Queries/Suggestions Please reach out at :")
-    st.sidebar.info("darekarabhishek@gmail.com")
+    st.sidebar.info("Sarthak Ahir")
+    st.sidebar.info("Dharmik Bhanushali")
+    st.sidebar.info("Mihir Bhanushali")
+    st.sidebar.info("Chinmay Belekar")
     #st.sidebar.subheader("Scatter-plot setup")
     #box1 = st.sidebar.selectbox(label= "X axis", options = numeric_columns)
     #box2 = st.sidebar.selectbox(label="Y axis", options=numeric_columns)
