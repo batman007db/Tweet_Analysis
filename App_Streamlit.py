@@ -19,6 +19,7 @@ from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import openpyxl
 import time
 import tqdm
+from tkinter import *
 
 #To Hide Warnings
 st.set_option('deprecation.showfileUploaderEncoding', False)
@@ -120,7 +121,7 @@ def main():
     st.image(image, caption='Twitter for Analytics',use_column_width=True)
 
     # importing library
-    from tkinter import *
+    
     # creating window
     window = Tk()
     # Title
