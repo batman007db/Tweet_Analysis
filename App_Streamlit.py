@@ -113,8 +113,6 @@ def main():
         text_new = " ".join([txt for txt in Topic_text.split() if txt not in stopwords])
         return text_new
 
-    if imgage.mode != 'RGB':
-    img = img.convert('RGB')
     #
     from PIL import Image
     image = Image.open('Logo1.jpg')
