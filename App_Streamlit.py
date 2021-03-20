@@ -133,7 +133,7 @@ def main():
     # Use \\ in the address
     # The image given by me is C:\\UserAdmin\\Device\\Desktop2\\canyon.gif
     my_image = PhotoImage(file='https://media.giphy.com/media/6h8jgwC3dU6vS/giphy.gif')
-    canvas.create_image(0, 0, anchor=NW, image - my_image)
+    canvas.create_image(0, 0, anchor=NW, image = my_image)
 
     # Collect Input from user :
     Topic = str()
