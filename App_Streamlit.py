@@ -223,9 +223,9 @@ def main():
     st.sidebar.header("About App")
     st.sidebar.info("A Twitter Sentiment analysis Project which will extract tweets for the Twitter Handle or the topic selected by the user. The extracted tweets will then be processed and Sentiment Analysis will be performed on them to determine the Sentiments of those tweets. \
                     AS output,the various Visualizations will be displayed to help us understand the overall mood of the people on Twitter regarding the input provided by the user.")
-    st.sidebar.text("Project Made By:")
+  
     
-    st.sidebar.header("For Any Queries/Suggestions Please reach out at :")
+    st.sidebar.header("Project Made By:")
     st.sidebar.info("Sarthak Ahir")
     st.sidebar.info("Dharmik Bhanushali")
     st.sidebar.info("Mihir Bhanushali")
