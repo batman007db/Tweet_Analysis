@@ -19,7 +19,6 @@ from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import openpyxl
 import time
 import tqdm
-from tkinter import *
 
 #To Hide Warnings
 st.set_option('deprecation.showfileUploaderEncoding', False)
@@ -120,22 +119,7 @@ def main():
     image = Image.open('Logo1.jpg')
     st.image(image, caption='Twitter for Analytics',use_column_width=True)
 
-    # importing library
-    
-    # creating window
-    window = Tk()
-    # Title
-    window.title('Grand Canyon')
-    # display attributes
-    canvas = Canvas(window, width=500, height=500)
-    canvas.pack()
-    # GIF in my_image variable
-    # Give the entire file address along with the file name and gif extension
-    # Use \\ in the address
-    # The image given by me is C:\\UserAdmin\\Device\\Desktop2\\canyon.gif
-    my_image = PhotoImage(file='https://media.giphy.com/media/6h8jgwC3dU6vS/giphy.gif')
-    canvas.create_image(0, 0, anchor=NW, image = my_image)
-
+   
     # Collect Input from user :
     Topic = str()
     Topic = str(st.text_input("Enter the topic you are interested in (Press Enter once done)"))     
