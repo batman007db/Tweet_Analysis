@@ -80,7 +80,7 @@ def main():
     # Write a Function to extract tweets:
     def get_tweets(Topic,Count):
         i=0
-	if select == "@Twitter_Handle":
+        if select == "@Twitter_Handle":
         #my_bar = st.progress(100) # To track progress of Extracted tweets
             for tweet in tweepy.Cursor(api.user_timeline, id=Topic).items():
                 #time.sleep(0.1)
@@ -99,8 +99,8 @@ def main():
                     break
                 else:
                     pass
-	
-	elif add_selectbox == "#Hashtag":
+
+        elif add_selectbox == "#Hashtag":
             for tweet in tweepy.Cursor(api.search, q=Topic, lang="en", tweet_mode='extended').items():
                 #time.sleep(0.1)
                 #my_bar.progress(i)
@@ -118,8 +118,7 @@ def main():
                     break
                 else:
                     pass
-	
-	
+
     # Function to Clean the Tweet.
     def clean_tweet(tweet):
         return ' '.join(re.sub('(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)|([RT])', ' ', tweet.lower()).split())
