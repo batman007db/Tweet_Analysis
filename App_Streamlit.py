@@ -150,9 +150,9 @@ def main():
     # Collect Input from user :
     Topic = str()
     Topic = str(st.text_input("Enter the topic you are interested in (Press Enter once done)"))     
-    tags = api.trends_place(23424848)
-    for name in range(0,10):
-        st.sidebar.write(tag[0]['trends'][name])
+    #tags = api.trends_place(23424848)
+    for tags in api.trends_place(23424848):
+        st.sidebar.write(tags[0]['trends']['name'])
     
     if len(Topic) > 0 :
         
