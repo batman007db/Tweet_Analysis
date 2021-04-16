@@ -101,7 +101,7 @@ def main():
                 df.loc[i,"Date"] = tweet.created_at
                 df.loc[i,"User"] = tweet.user.name
                 df.loc[i,"IsVerified"] = tweet.user.verified
-                df.loc[i,"Tweet"] = tweet.text.encode('utf-8')
+                df.loc[i,"Tweet"] = tweet.full_text
                 df.loc[i,"Likes"] = tweet.favorite_count
                 df.loc[i,"RT"] = tweet.retweet_count
                 df.loc[i,"User_location"] = tweet.user.location
