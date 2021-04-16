@@ -54,6 +54,7 @@ def main():
     st.markdown(html_temp, unsafe_allow_html=True)
     st.subheader("Select a topic which you'd like to get the sentiment analysis on :")
 	
+    st.sidebar.title('Visualization Selector')
 
     ################# Twitter API Connection #######################
     consumer_key = "BCbxDlcoddIOplVCInJU9ioKW"
@@ -149,6 +150,8 @@ def main():
     # Collect Input from user :
     Topic = str()
     Topic = str(st.text_input("Enter the topic you are interested in (Press Enter once done)"))     
+    tags = api.trends_place(23424848)
+    st.sidebar.write(tags)
     
     if len(Topic) > 0 :
         
