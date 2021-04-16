@@ -50,7 +50,6 @@ def main():
 	
     st.sidebar.title('Visualization Selector')
     
-    select = st.sidebar.selectbox('Select the analysis mode',df['state'])
     select_status = st.sidebar.radio("Select analysis mode:", ('#Hashtag', '@Twitter_Handle'))
     st.markdown(html_temp, unsafe_allow_html=True)
     st.subheader("Select a topic which you'd like to get the sentiment analysis on :")
