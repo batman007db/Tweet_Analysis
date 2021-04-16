@@ -151,8 +151,14 @@ def main():
     Topic = str()
     Topic = str(st.text_input("Enter the topic you are interested in (Press Enter once done)"))     
     #tags = api.trends_place(23424848)
-    for tags in api.trends_place(23424848):
-        st.sidebar.write(tags.trends.name)
+	
+    
+    trends1 = api.trends_place(23424848)
+    st.sidebar.write(trends1)
+    hashtags = [x['name'] for x in trends1[0]['trends'] if x['name'].startswith('#')]
+    # print hashtags
+    st.sidebar.write(hashtags[0])
+
     
     if len(Topic) > 0 :
         
