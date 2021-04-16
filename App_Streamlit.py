@@ -151,7 +151,7 @@ def main():
     Topic = str()
     Topic = str(st.text_input("Enter the topic you are interested in (Press Enter once done)"))     
     tags = api.trends_place(23424848)
-    st.sidebar.write(tags)
+    st.sidebar.write(tags.trends.name)
     
     if len(Topic) > 0 :
         
