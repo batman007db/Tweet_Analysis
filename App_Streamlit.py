@@ -20,6 +20,11 @@ import openpyxl
 import time
 import tqdm
 
+import plotly.express as px
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
+
+
 #To Hide Warnings
 st.set_option('deprecation.showfileUploaderEncoding', False)
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -48,6 +53,12 @@ def main():
 	"""
     st.markdown(html_temp, unsafe_allow_html=True)
     st.subheader("Select a topic which you'd like to get the sentiment analysis on :")
+	
+    st.sidebar.title(“Visualization Selector”)
+    st.sidebar.markdown(“user choice:”)
+    select = st.sidebar.selectbox('Select the analysis mode',df['state'])
+   
+    select_status = st.sidebar.radio("Select analysis mode:", ('#Hashtag', '@Twitter_Handle'))
 
     ################# Twitter API Connection #######################
     consumer_key = "BCbxDlcoddIOplVCInJU9ioKW"
@@ -69,24 +80,46 @@ def main():
     # Write a Function to extract tweets:
     def get_tweets(Topic,Count):
         i=0
+	if select == "@Twitter_Handle":
         #my_bar = st.progress(100) # To track progress of Extracted tweets
-        for tweet in tweepy.Cursor(api.user_timeline, id=Topic).items():
-            #time.sleep(0.1)
-            #my_bar.progress(i)
-            df.loc[i,"Date"] = tweet.created_at
-            df.loc[i,"User"] = tweet.user.name
-            df.loc[i,"IsVerified"] = tweet.user.verified
-            df.loc[i,"Tweet"] = tweet.text
-            df.loc[i,"Likes"] = tweet.favorite_count
-            df.loc[i,"RT"] = tweet.retweet_count
-            df.loc[i,"User_location"] = tweet.user.location
+            for tweet in tweepy.Cursor(api.user_timeline, id=Topic).items():
+                #time.sleep(0.1)
+                #my_bar.progress(i)
+                df.loc[i,"Date"] = tweet.created_at
+                df.loc[i,"User"] = tweet.user.name
+                df.loc[i,"IsVerified"] = tweet.user.verified
+                df.loc[i,"Tweet"] = tweet.text
+                df.loc[i,"Likes"] = tweet.favorite_count
+                df.loc[i,"RT"] = tweet.retweet_count
+                df.loc[i,"User_location"] = tweet.user.location
             #df.to_csv("TweetDataset.csv",index=False)
             #df.to_excel('{}.xlsx'.format("TweetDataset"),index=False)   ## Save as Excel
-            i=i+1
-            if i>Count:
-                break
-            else:
-                pass
+                i=i+1
+                if i>Count:
+                    break
+                else:
+                    pass
+	
+	elif add_selectbox == "#Hashtag":
+            for tweet in tweepy.Cursor(api.search, q=Topic, lang="en", tweet_mode='extended').items():
+                #time.sleep(0.1)
+                #my_bar.progress(i)
+                df.loc[i,"Date"] = tweet.created_at
+                df.loc[i,"User"] = tweet.user.name
+                df.loc[i,"IsVerified"] = tweet.user.verified
+                df.loc[i,"Tweet"] = tweet.text
+                df.loc[i,"Likes"] = tweet.favorite_count
+                df.loc[i,"RT"] = tweet.retweet_count
+                df.loc[i,"User_location"] = tweet.user.location
+            #df.to_csv("TweetDataset.csv",index=False)
+            #df.to_excel('{}.xlsx'.format("TweetDataset"),index=False)   ## Save as Excel
+                i=i+1
+                if i>Count:
+                    break
+                else:
+                    pass
+	
+	
     # Function to Clean the Tweet.
     def clean_tweet(tweet):
         return ' '.join(re.sub('(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)|([RT])', ' ', tweet.lower()).split())
@@ -128,7 +161,7 @@ def main():
         
         # Call the function to extract the data. pass the topic and filename you want the data to be stored in.
         with st.spinner("Please wait, Tweets are being extracted"):
-            get_tweets(Topic , Count=200)
+            get_tweets(Topic , Count=200 ,select)
         st.success('Tweets have been Extracted !!!!')    
            
     
