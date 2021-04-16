@@ -96,7 +96,7 @@ def main():
                     pass
 
         elif select == "#Hashtag":
-            for tweet in tweepy.Cursor(api.search, q=Topic, lang="en", tweet_mode='extended').items():
+            for tweet in tweepy.Cursor(api.search, q =str(Topic), lang="en", tweet_mode='extended').items():
                 #time.sleep(0.1)
                 #my_bar.progress(i)
                 df.loc[i,"Date"] = tweet.created_at
