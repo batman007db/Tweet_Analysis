@@ -78,7 +78,7 @@ def main():
     df = pd.DataFrame(columns=["Date","User","IsVerified","Tweet","Likes","RT",'User_location'])
     
     # Write a Function to extract tweets:
-    def get_tweets(Topic,Count):
+    def get_tweets(Topic,Count,select):
         i=0
         if select == "@Twitter_Handle":
         #my_bar = st.progress(100) # To track progress of Extracted tweets
