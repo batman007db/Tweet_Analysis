@@ -78,7 +78,7 @@ def main():
     df = pd.DataFrame(columns=["Date","User","IsVerified","Tweet","Likes","RT",'User_location'])
     
     # Write a Function to extract tweets:
-    def get_tweets(Topic,Count,select):
+    def get_tweets(Topic,select,Count):
         i=0
         if select == "@Twitter_Handle":
         #my_bar = st.progress(100) # To track progress of Extracted tweets
@@ -160,7 +160,7 @@ def main():
         
         # Call the function to extract the data. pass the topic and filename you want the data to be stored in.
         with st.spinner("Please wait, Tweets are being extracted"):
-            get_tweets(Topic , Count=200 ,select)
+            get_tweets(Topic ,select, Count=200 )
         st.success('Tweets have been Extracted !!!!')    
            
     
