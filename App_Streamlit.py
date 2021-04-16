@@ -94,15 +94,14 @@ def main():
                     break
                 else:
                     pass
-
         elif select == "#Hashtag":
-            for tweet in tweepy.Cursor(api.search, q =str(Topic), lang="en", tweet_mode='extended').items():
+            for tweet in tweepy.Cursor(api.search, query =str(Topic), lang="en", tweet_mode='extended').items():
                 #time.sleep(0.1)
                 #my_bar.progress(i)
                 df.loc[i,"Date"] = tweet.created_at
                 df.loc[i,"User"] = tweet.user.name
                 df.loc[i,"IsVerified"] = tweet.user.verified
-                df.loc[i,"Tweet"] = tweet.text
+                df.loc[i,"Tweet"] = tweet.text.encode('utf-8')
                 df.loc[i,"Likes"] = tweet.favorite_count
                 df.loc[i,"RT"] = tweet.retweet_count
                 df.loc[i,"User_location"] = tweet.user.location
