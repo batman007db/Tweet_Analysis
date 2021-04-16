@@ -52,7 +52,7 @@ def main():
     
     select = st.sidebar.radio("Select analysis mode:", ('#Hashtag', '@Twitter_Handle'))
     st.markdown(html_temp, unsafe_allow_html=True)
-    st.subheader("Select a topic which you'd like to get the sentiment analysis on :")
+    
 	
     st.sidebar.title('Popular Trends near you!')
 
@@ -146,7 +146,7 @@ def main():
     image = Image.open('Logo1.jpg').convert('RGB')
     st.image(image, caption='Twitter for Analytics',use_column_width=True)
 
-   
+    st.subheader("Select a topic which you'd like to get the sentiment analysis on :")
     # Collect Input from user :
     Topic = str()
     Topic = str(st.text_input("Enter the topic you are interested in (Press Enter once done)"))     
