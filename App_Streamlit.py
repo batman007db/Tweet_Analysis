@@ -95,7 +95,7 @@ def main():
                 else:
                     pass
 
-        elif add_selectbox == "#Hashtag":
+        elif select == "#Hashtag":
             for tweet in tweepy.Cursor(api.search, q=Topic, lang="en", tweet_mode='extended').items():
                 #time.sleep(0.1)
                 #my_bar.progress(i)
