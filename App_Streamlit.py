@@ -20,10 +20,6 @@ import openpyxl
 import time
 import tqdm
 
-import plotly.express as px
-from plotly.subplots import make_subplots
-import plotly.graph_objects as go
-
 
 #To Hide Warnings
 st.set_option('deprecation.showfileUploaderEncoding', False)
