@@ -51,14 +51,14 @@ def main():
     html_temp = """
 	<div style="background-color:tomato;"><p style="color:white;font-size:40px;padding:9px">Live twitter Sentiment analysis</p></div>
 	"""
-    st.markdown(html_temp, unsafe_allow_html=True)
-    st.subheader("Select a topic which you'd like to get the sentiment analysis on :")
 	
     st.sidebar.title(“Visualization Selector”)
     st.sidebar.markdown(“user choice:”)
     select = st.sidebar.selectbox('Select the analysis mode',df['state'])
-   
     select_status = st.sidebar.radio("Select analysis mode:", ('#Hashtag', '@Twitter_Handle'))
+    st.markdown(html_temp, unsafe_allow_html=True)
+    st.subheader("Select a topic which you'd like to get the sentiment analysis on :")
+	
 
     ################# Twitter API Connection #######################
     consumer_key = "BCbxDlcoddIOplVCInJU9ioKW"
