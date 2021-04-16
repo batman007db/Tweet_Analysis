@@ -54,7 +54,7 @@ def main():
     st.markdown(html_temp, unsafe_allow_html=True)
     st.subheader("Select a topic which you'd like to get the sentiment analysis on :")
 	
-    st.sidebar.title('Visualization Selector')
+    st.sidebar.title('Popular Trends near you!')
 
     ################# Twitter API Connection #######################
     consumer_key = "BCbxDlcoddIOplVCInJU9ioKW"
@@ -154,10 +154,10 @@ def main():
 	
     
     trends1 = api.trends_place(23424848)
-    st.sidebar.write(trends1)
+    
     hashtags = [x['name'] for x in trends1[0]['trends'] if x['name'].startswith('#')]
     # print hashtags
-    st.sidebar.write(hashtags[0])
+    st.sidebar.write(hashtags)
 
     
     if len(Topic) > 0 :
