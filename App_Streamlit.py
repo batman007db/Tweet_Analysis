@@ -52,8 +52,8 @@ def main():
 	<div style="background-color:tomato;"><p style="color:white;font-size:40px;padding:9px">Live twitter Sentiment analysis</p></div>
 	"""
 	
-    st.sidebar.title(“Visualization Selector”)
-    st.sidebar.markdown(“user choice:”)
+    st.sidebar.title('Visualization Selector')
+    
     select = st.sidebar.selectbox('Select the analysis mode',df['state'])
     select_status = st.sidebar.radio("Select analysis mode:", ('#Hashtag', '@Twitter_Handle'))
     st.markdown(html_temp, unsafe_allow_html=True)
