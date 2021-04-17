@@ -19,6 +19,7 @@ from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import openpyxl
 import time
 import tqdm
+import plotly.graph_objects as go
 
 
 #To Hide Warnings
