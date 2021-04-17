@@ -19,7 +19,7 @@ from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import openpyxl
 import time
 import tqdm
-import plotly.graph_objects as go
+#import plotly.graph_objects as go
 
 
 #To Hide Warnings
@@ -251,11 +251,10 @@ def main():
                 st.write(plt.imshow(wordcloud, interpolation='bilinear'))
                 st.pyplot()
         
-        elif chart_visual == 'Bubble Chart':
-            fig = go.Figure()
-            fig.add_trace(go.Scatter(x=df["Sentiment"],y=len(df["Sentiment"]),mode='markers',marker_size=[40, 60, 80, 60, 40, 50], name='Formerly_Smoked'))
-        
-        
+      # elif chart_visual == 'Bubble Chart':
+      #      fig = go.Figure()
+       #     fig.add_trace(go.Scatter(x=df["Sentiment"],y=len(df["Sentiment"]),mode='markers',marker_size=[40, 60, 80, 60, 40, 50], name='Formerly_Smoked'))
+     
         
     st.sidebar.header("About App")
     st.sidebar.info("A Twitter Sentiment analysis Project which will extract tweets for the Twitter Handle or the topic selected by the user. The extracted tweets will then be processed and Sentiment Analysis will be performed on them to determine the Sentiments of those tweets. \
