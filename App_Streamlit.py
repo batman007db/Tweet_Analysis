@@ -218,7 +218,7 @@ def main():
             selected_status = st.sidebar.selectbox('Select Sentiment Status', options = ['All Tweets', 'Positive Tweets', 'Negative Tweets'])
             
             if selected_status == 'All Tweets':
-		st.success("Generating A WordCloud for all things said about {}".format(Topic))
+	        st.success("Generating A WordCloud for all things said about {}".format(Topic))
                 text = " ".join(review for review in df.clean_tweet)
                 stopwords = set(STOPWORDS)
                 text_newALL = prepCloud(text,Topic)
@@ -251,7 +251,7 @@ def main():
                 st.pyplot()
         
         elif chart_visual == 'Bubble Chart':
-    	    fig.add_trace(go.Scatter(x=df["Sentiment"],y=len(df["Sentiment"]),mode='markers',marker_size=[40, 60, 80, 60, 40, 50], name='Formerly_Smoked'))
+            fig.add_trace(go.Scatter(x=df["Sentiment"],y=len(df["Sentiment"]),mode='markers',marker_size=[40, 60, 80, 60, 40, 50], name='Formerly_Smoked'))
         
         
         
