@@ -251,6 +251,7 @@ def main():
                 st.pyplot()
         
         elif chart_visual == 'Bubble Chart':
+            fig = go.Figure()
             fig.add_trace(go.Scatter(x=df["Sentiment"],y=len(df["Sentiment"]),mode='markers',marker_size=[40, 60, 80, 60, 40, 50], name='Formerly_Smoked'))
         
         
