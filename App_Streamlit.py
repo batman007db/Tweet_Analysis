@@ -158,7 +158,8 @@ def main():
     hashtags = [x['name'] for x in trends1[0]['trends'] ]
     
     st.sidebar.write(hashtags[0:24])
-
+    chart_visual = st.sidebar.selectbox('Select Charts/Plot type',('Line Chart', 'Bar Chart', 'Pie Chart','Bubble Chart','WordCloud'))
+    
     
     if len(Topic) > 0 :
         
@@ -189,14 +190,18 @@ def main():
         
         
         # get the countPlot
-        if st.button("Get Count Plot for Different Sentiments"):
+        if chart_visual == 'Bar Chart':
             st.success("Generating A Count Plot")
             st.subheader(" Count Plot for Different Sentiments")
             st.write(sns.countplot(df["Sentiment"]))
             st.pyplot()
+            st.success("Generating A Count Plot (Verified and unverified Users)")
+            st.subheader(" Count Plot for Different Sentiments for Verified and unverified Users")
+            st.write(sns.countplot(df["Sentiment"],hue=df.IsVerified))
+            st.pyplot()
         
         # Piechart 
-        if st.button("Get Pie Chart for Different Sentiments"):
+        elif chart_visual == 'Pie Chart':
             st.success("Generating A Pie Chart")
             a=len(df[df["Sentiment"]=="Positive"])
             b=len(df[df["Sentiment"]=="Negative"])
@@ -207,50 +212,42 @@ def main():
             st.pyplot()
             
             
-        # get the countPlot Based on Verified and unverified Users
-        if st.button("Get Count Plot Based on Verified and unverified Users"):
-            st.success("Generating A Count Plot (Verified and unverified Users)")
-            st.subheader(" Count Plot for Different Sentiments for Verified and unverified Users")
-            st.write(sns.countplot(df["Sentiment"],hue=df.IsVerified))
-            st.pyplot()
-        
-        
-        ## Points to add 1. Make Backgroud Clear for Wordcloud 2. Remove keywords from Wordcloud
-        
         
         # Create a Worlcloud
-        if st.button("Get WordCloud for all things said about {}".format(Topic)):
+        elif chart_visual == 'WordCloud':
+            selected_status = st.sidebar.selectbox('Select Smoking Status', options = ['All Tweets', 'Positive Tweets', 'Negative Tweets'])
             st.success("Generating A WordCloud for all things said about {}".format(Topic))
-            text = " ".join(review for review in df.clean_tweet)
-            stopwords = set(STOPWORDS)
-            text_newALL = prepCloud(text,Topic)
-            wordcloud = WordCloud(stopwords=stopwords,max_words=800,max_font_size=70).generate(text_newALL)
-            st.write(plt.imshow(wordcloud, interpolation='bilinear'))
-            st.pyplot()
+            if selected_status == 'All Tweets':
+                text = " ".join(review for review in df.clean_tweet)
+                stopwords = set(STOPWORDS)
+                text_newALL = prepCloud(text,Topic)
+                wordcloud = WordCloud(stopwords=stopwords,max_words=800,max_font_size=70).generate(text_newALL)
+                st.write(plt.imshow(wordcloud, interpolation='bilinear'))
+                st.pyplot()
         
         
         #Wordcloud for Positive tweets only
-        if st.button("Get WordCloud for all Positive Tweets about {}".format(Topic)):
-            st.success("Generating A WordCloud for all Positive Tweets about {}".format(Topic))
-            text_positive = " ".join(review for review in df[df["Sentiment"]=="Positive"].clean_tweet)
-            stopwords = set(STOPWORDS)
-            text_new_positive = prepCloud(text_positive,Topic)
-            #text_positive=" ".join([word for word in text_positive.split() if word not in stopwords])
-            wordcloud = WordCloud(stopwords=stopwords,max_words=800,max_font_size=70).generate(text_new_positive)
-            st.write(plt.imshow(wordcloud, interpolation='bilinear'))
-            st.pyplot()
+            if selected_status == 'Positive Tweets':
+                st.success("Generating A WordCloud for all Positive Tweets about {}".format(Topic))
+                text_positive = " ".join(review for review in df[df["Sentiment"]=="Positive"].clean_tweet)
+                stopwords = set(STOPWORDS)
+                text_new_positive = prepCloud(text_positive,Topic)
+                #text_positive=" ".join([word for word in text_positive.split() if word not in stopwords])
+                wordcloud = WordCloud(stopwords=stopwords,max_words=800,max_font_size=70).generate(text_new_positive)
+                st.write(plt.imshow(wordcloud, interpolation='bilinear'))
+                st.pyplot()
         
         
         #Wordcloud for Negative tweets only       
-        if st.button("Get WordCloud for all Negative Tweets about {}".format(Topic)):
-            st.success("Generating A WordCloud for all Positive Tweets about {}".format(Topic))
-            text_negative = " ".join(review for review in df[df["Sentiment"]=="Negative"].clean_tweet)
-            stopwords = set(STOPWORDS)
-            text_new_negative = prepCloud(text_negative,Topic)
-            #text_negative=" ".join([word for word in text_negative.split() if word not in stopwords])
-            wordcloud = WordCloud(stopwords=stopwords,max_words=800,max_font_size=70).generate(text_new_negative)
-            st.write(plt.imshow(wordcloud, interpolation='bilinear'))
-            st.pyplot()
+            if selected_status == 'Negative Tweets':
+                st.success("Generating A WordCloud for all Positive Tweets about {}".format(Topic))
+                text_negative = " ".join(review for review in df[df["Sentiment"]=="Negative"].clean_tweet)
+                stopwords = set(STOPWORDS)
+                text_new_negative = prepCloud(text_negative,Topic)
+                #text_negative=" ".join([word for word in text_negative.split() if word not in stopwords])
+                wordcloud = WordCloud(stopwords=stopwords,max_words=800,max_font_size=70).generate(text_new_negative)
+                st.write(plt.imshow(wordcloud, interpolation='bilinear'))
+                st.pyplot()
         
         
         
