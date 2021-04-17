@@ -215,9 +215,10 @@ def main():
         
         # Create a Worlcloud
         elif chart_visual == 'WordCloud':
-            selected_status = st.sidebar.selectbox('Select Smoking Status', options = ['All Tweets', 'Positive Tweets', 'Negative Tweets'])
-            st.success("Generating A WordCloud for all things said about {}".format(Topic))
+            selected_status = st.sidebar.selectbox('Select Sentiment Status', options = ['All Tweets', 'Positive Tweets', 'Negative Tweets'])
+            
             if selected_status == 'All Tweets':
+		st.success("Generating A WordCloud for all things said about {}".format(Topic))
                 text = " ".join(review for review in df.clean_tweet)
                 stopwords = set(STOPWORDS)
                 text_newALL = prepCloud(text,Topic)
@@ -240,7 +241,7 @@ def main():
         
         #Wordcloud for Negative tweets only       
             if selected_status == 'Negative Tweets':
-                st.success("Generating A WordCloud for all Positive Tweets about {}".format(Topic))
+                st.success("Generating A WordCloud for all Negative Tweets about {}".format(Topic))
                 text_negative = " ".join(review for review in df[df["Sentiment"]=="Negative"].clean_tweet)
                 stopwords = set(STOPWORDS)
                 text_new_negative = prepCloud(text_negative,Topic)
@@ -249,7 +250,8 @@ def main():
                 st.write(plt.imshow(wordcloud, interpolation='bilinear'))
                 st.pyplot()
         
-        
+        elif chart_visual == 'Bubble Chart':
+    	    fig.add_trace(go.Scatter(x=df["Sentiment"],y=len(df["Sentiment"]),mode='markers',marker_size=[40, 60, 80, 60, 40, 50], name='Formerly_Smoked'))
         
         
         
