@@ -155,9 +155,9 @@ def main():
     
     trends1 = api.trends_place(23424848)
     
-    hashtags = [x['name'] for x in trends1[0]['trends'] if x['name'].startswith('#')]
-    # print hashtags
-    st.sidebar.write(hashtags)
+    hashtags = [x['name'] for x in trends1[0]['trends'] ]
+    
+    st.sidebar.write(hashtags[0:24])
 
     
     if len(Topic) > 0 :
